@@ -45,11 +45,11 @@ func (this *Squeak) Quack() {
 	fmt.Println("Ga Ga Ga ...")
 }
 
-type Buzzer struct {
+type DuckCall struct {
 }
 
-func (this *Buzzer) Quack() {
-	fmt.Println("eng eng eng ...")
+func (this *DuckCall) Quack() {
+	fmt.Println("Ga Ga Ga ...(machine display)")
 }
 
 type Duck struct {
@@ -107,28 +107,6 @@ func (this *ModelDuck) SetRocketPowered() {
 	this.SetFlyBehavior(&FlyRocketPowered{})
 }
 
-func (this *ModelDuck) SetBuzzerQuack() {
-	this.SetQuackBehavior(&Buzzer{})
+func (this *ModelDuck) SetDuckCallQuack() {
+	this.SetQuackBehavior(&DuckCall{})
 }
-
-//func main() {
-//	fmt.Println("-------------- mallard duck show time -------------")
-//	mallardDuck := newMallardDuck()
-//	mallardDuck.Display()
-//	mallardDuck.PerformFly()
-//	mallardDuck.PerformQuack()
-//
-//	fmt.Println("-------------- model duck show time -------------")
-//	modelDuck := newModelDuck()
-//	modelDuck.Display()
-//	modelDuck.PerformFly()
-//	modelDuck.PerformQuack()
-//
-//	fmt.Println("-------------- model duck set rocket power -------------")
-//	modelDuck.SetRocketPowered()
-//	modelDuck.PerformFly()
-//
-//	fmt.Println("-------------- model duck set buzzer -------------")
-//	modelDuck.SetBuzzerQuack()
-//	modelDuck.PerformQuack()
-//}

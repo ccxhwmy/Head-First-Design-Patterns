@@ -23,6 +23,6 @@ func TestDuckPerform(t *testing.T) {
 	modelDuck.PerformFly()
 
 	fmt.Println("-------------- model duck set buzzer -------------")
-	modelDuck.SetBuzzerQuack()
+	modelDuck.SetDuckCallQuack()
 	modelDuck.PerformQuack()
 }
