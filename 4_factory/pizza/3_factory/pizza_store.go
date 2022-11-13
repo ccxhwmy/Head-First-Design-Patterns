@@ -1,21 +1,23 @@
 package factory
 
-type iPizzaStore interface {
-	orderPizza(typ string) iPizza
+import "fmt"
+
+type PizzaStore interface {
 	createPizza(item string) iPizza
 }
 
-type PizzaStore struct {
+type PizzaStoreManger struct {
 }
 
-func NewPizzaStore() *PizzaStore {
-	return &PizzaStore{}
+func newPizzaStoreManager() *PizzaStoreManger {
+	return &PizzaStoreManger{}
 }
 
-func (this *PizzaStore) orderPizza(typ string) iPizza {
+func (this *PizzaStoreManger) orderPizza(store PizzaStore, typ string) iPizza {
 	var pizza iPizza
 
-	pizza = this.createPizza(typ)
+	pizza = store.createPizza(typ)
+	fmt.Println("--- Make a ", pizza.GetName(), " ---")
 
 	pizza.Prepare()
 	pizza.Bake()
@@ -25,31 +27,10 @@ func (this *PizzaStore) orderPizza(typ string) iPizza {
 	return pizza
 }
 
-func (this *PizzaStore) createPizza(item string) iPizza {
-	var pizza iPizza
-
-	if item == "cheese" {
-		pizza = NewCheesePizza()
-	} else if item == "pepperoni" {
-		pizza = NewPepperoniPizza()
-	} else if item == "clam" {
-		pizza = NewClamPizza()
-	} else if item == "veggie" {
-		pizza = NewVeggiePizza()
-	}
-
-	if pizza == nil {
-		pizza = NewCheesePizza()
-	}
-
-	return pizza
-}
-
 type ChicagoPizzaStore struct {
-	*PizzaStore
 }
 
-func newChicagoPizzaStore() iPizzaStore {
+func newChicagoPizzaStore() PizzaStore {
 	return &ChicagoPizzaStore{}
 }
 
@@ -68,10 +49,9 @@ func (this *ChicagoPizzaStore) createPizza(item string) iPizza {
 }
 
 type NYPizzaStore struct {
-	*PizzaStore
 }
 
-func newNYPizzaStore() iPizzaStore {
+func newNYPizzaStore() PizzaStore {
 	return &NYPizzaStore{}
 }
 
